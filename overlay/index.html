@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <title> kagerou overlay </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Lato">
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="../share/css/job-icons.css" />
     <script>
@@ -19,49 +18,14 @@ try {
   }
 }
     </script>
-    <script src="https://cdn.ravenjs.com/3.17.0/raven.min.js"></script>
-    <script>
-'use strict'
-
-Raven && Raven.config('https://77d763feffdf45daa9a75517878489cd@s.hibiya.moe/2', {
-  // to who plays with forked source:
-  // please do *not* report your error to me. do NOT edit this, or simply
-  // remove raven-related codes.
-  whitelistUrls: [/hibiyasleep\.github\.io/, /kagerou\.hibiya\.moe/, /idyllshi.re/],
-  dataCallback: function(data) {
-    if(window.hist && window.hist.currentData) {
-      data.extra.currentData = JSON.stringify(window.hist.currentData)
-    }
-    return data
-  }
-}).install()
-
-    </script>
     <script src="../share/lib/util.js?v=Northern-Cross"></script>
     <script src="../share/lib/config.js?v=Northern-Cross"></script>
-    <script>
-'use strict'
-
-Raven && Raven.setRelease(VERSION)
-
-    </script>
     <script src="../share/lib/ws-abstract.js?v=Northern-Cross"></script>
     <script src="../share/lib/locale.js?v=Northern-Cross"></script>
     <script src="lib/render.js?v=Northern-Cross"></script>
     <script src="lib/listen.js?v=Northern-Cross"></script>
     <script src="lib/ui.js?v=Northern-Cross"></script>
     <script>
-'use strict'
-
-// temporal ACTWebSocket fix: Newer OverlayProc doesn't allow 'downgrade'
-// security, from https to unsecured websocket, and GitHub pages forces HTTPS.
-// I know this sucks.
-if(window.layer
-&& layer.type === 'ws'
-&& location.host === 'hibiyasleep.github.io') {
-  location.href = 'http://kagerou.hibiya.moe/overlay' + location.search
-}
-
 // config
 window.config = new Config()
 
