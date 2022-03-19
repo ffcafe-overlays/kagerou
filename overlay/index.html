@@ -5,7 +5,7 @@
     <title> kagerou overlay </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="../share/css/job-icons.css" />
+    <link rel="stylesheet" href="../share/css/job-icons.css?v=6" />
     <script>
 try {
   var __test = new Function('a', "'use strict'; const b=(_=>`${_}`)(a); return b")(1)
@@ -25,6 +25,13 @@ try {
     <script src="lib/render.js?v=Northern-Cross"></script>
     <script src="lib/listen.js?v=Northern-Cross"></script>
     <script src="lib/ui.js?v=Northern-Cross"></script>
+    <script src="../share/lib/util.js?v=viator-in-vitro"></script>
+    <script src="../share/lib/config.js?v=viator-in-vitro"></script>
+    <script src="../share/lib/ws-abstract.js?v=viator-in-vitro"></script>
+    <script src="../share/lib/locale.js?v=viator-in-vitro"></script>
+    <script src="lib/render.js?v=viator-in-vitro"></script>
+    <script src="lib/listen.js?v=viator-in-vitro"></script>
+    <script src="lib/ui.js?v=viator-in-vitro"></script>
     <script>
 // config
 window.config = new Config()
@@ -152,29 +159,34 @@ window.addEventListener('load', e => {
           <span class="history-region"> </span>
         </li>
         <li class="empty">
+          <mark> 0.8.13 </mark> <span> viator in vitro </span>
+          <br />
+          <span class="history-region"> すべての旅人たちの 記憶はここに集う </span>
+        </li>
+        <li class="empty">
+          <mark> 0.8.12 </mark> <span> Supersymmetry </span>
+          <br />
+          <span class="history-region"> 最も美しいパラドックスは対称性である。 </span>
+        </li>
+        <li class="empty">
+          <mark> 0.8.11 </mark> <span> save your tears, save your dreams </span>
+          <br />
+          <span class="history-region"> ささやかな幻よ、煌け！ </span>
+        </li>
+        <li class="empty">
+          <mark> 0.8.10 </mark> <span> City of Mirrors </span>
+          <br />
+          <span class="history-region"> なんびとの心も映す鏡の如きヴォカリーズ曲 </span>
+        </li>
+        <li class="empty">
           <mark> 0.8.9 </mark> <span> Northen Cross </span>
           <br />
-          <span class="history-region"> </span>
+          <span class="history-region"> 燦然とピアノを照らす もうひとつの十字星 </span>
         </li>
         <li class="empty">
           <mark> 0.8.8 </mark> <span> Deprived World </span>
           <br />
           <span class="history-region"> …この儚くも美しい　「奪われた世界」を </span>
-        </li>
-        <li class="empty">
-          <mark> 0.8.5 </mark> <span> phantasmagoria </span>
-          <br />
-          <span class="history-region"> 長き道夫振り返り　小さな光へ歩き出す </span>
-        </li>
-        <li class="empty">
-          <mark> 0.8.4 </mark> <span> tears proof masquerade </span>
-          <br />
-          <span class="history-region"> 偽りなき技巧が　挑戦への扉を開く </span>
-        </li>
-        <li class="empty">
-          <mark> 0.8.2 </mark> <span> point zero </span>
-          <br />
-          <span class="history-region"> 「ゼロからスタートする」 </span>
         </li>
       </ul>
       <ul class="dropdown buttons right" id="dropdown-more">
@@ -284,107 +296,67 @@ window.addEventListener('load', e => {
             </ul>
           </li>
           <li id="patchnote">
+            <h3> 0.8.14 'minne' - 2022/02/16 </h3>
+
+            <p class="lang ko">- 1000 단위 구분자 옵션 추가</p>
+            <p class="lang en fr de">- Thousand-separator option impl'd</p>
+            <p class="lang ja">- オプション「千単位の区切り文字」を追加</p>
+            <p> fixed by @Sundava </p>
+
+            <div id="old_plugin_warning">
+              <script>
+                try {
+                  null?.a
+                  old_plugin_warning.parentNode.removeChild(old_plugin_warning)
+                } catch(e) {}
+              </script>
+              <br />
+              <p class="lang ko">
+                - OverlayPlugin 0.3, 예전 방식 웹소켓 오버레이는 더 이상 지원하지 않습니다.
+                <br />
+                ngld/OverlayPlugin으로 교체해 주십시오.
+              </p>
+              <p class="lang en fr de ja">
+                - Old OverlayPlugin (aka 'hibiyasleep version') is no longer supported!!
+                <br />
+                please get update from github.com/ngld/OverlayPlugin .
+              </p>
+              <br />
+            </div>
+
+            <h3> 0.8.13 'viator in vitro' - 2021/12/08 </h3>
+
+            <p class="lang ko">- 6.0 직업 지원 추가</p>
+            <p class="lang en fr de">- 6.0 jobs added</p>
+            <p class="lang ja">- パッチ6.0のジョブに対応</p>
+            <p> fixed by @cglatot </p>
+
+            <h3> 0.8.12 'Supersymmetry' - 2021/10/21 </h3>
+
+            <p class="lang ko">
+              - maxhit 숫자 버그 수정
+            </p>
+            <p class="lang en fr de cn">
+              - maxhit numerals fixed
+            </p>
+            <p class="lang ja">
+              - maxhit 数値の表示を訂正
+            </p>
+            <p class="lang ko">
+              - 탭 항목에 '순위' 추가
+            </p>
+            <p class="lang en fr de cn">
+              - new tab item 'Rank' added
+            </p>
+            <p class="lang ja">
+              - タブの項目に「ランク」を追加
+            </p>
+
+            <h3> 0.8.11 'save your tears, save your dreams' - 2021/09/04 </h3>
             <h3> 0.8.10 'City of Mirrors' - 2021/06/28 </h3>
-
-            <p class="lang ko">
-              - ↓의 기능이 정수값에 대해 제대로 작동하지 않는 문제를 수정
-            </p>
-            <p class="lang en fr de cn">
-              - ↓ wasn't worked correctly for non-floats, fixing it
-            </p>
-            <p class="lang ja">
-              - ↓の機能が整数値に対して動作しない問題を修正
-            </p>
-
             <h3> 0.8.9 'Northern Cross' - 2021/06/07 </h3>
-
-            <p class="lang ko">
-              - 대미지 숫자 값에도 1000단위 생략을 적용
-            </p>
-            <p class="lang en fr de cn">
-              - Number abbr will also applied on various large number values
-            </p>
-            <p class="lang ja">
-              - 「1000の単位で数値を省略」をdps以外の数にも適用
-            </p>
-
-            <h3> 0.8.8 (fix) - 2021/05/15 </h3>
-
-            <p class="lang ko">
-              - 하단 rdps가 NaN으로 표시되는 현상 (아마도) 수정
-            </p>
-            <p class="lang en fr de cn">
-              - fixed bug that footer rdps shown as NaN (might not be fixed)
-            </p>
-            <p class="lang ja">
-              - 下部rdpsがNaNで表示された問題を修正
-            </p>
-
-            <h3> 0.8.7 (fix) - 2021/05/12 </h3>
-
-            <p class="lang ko">
-              <u>알림</u>:
-              업데이트 작업 중 '<u data-locale="config.format.number_abbreviation"></u>'
-              옵션이 실수로 켜지는 일이 있었습니다.
-            </p>
-            <p class="lang ko">
-              이 옵션이 켜져있으면 1만 이상의 숫자가 k 단위로 축약되게 됩니다.
-            </p>
-            <p class="patchnote-optional-message lang ko" data-success="비활성화되었습니다.">
-              혹시라도 이 상태를 원치 않으신다면,
-              <u><a>여기를 클릭</a></u>해서 옵션을 비활성화해 주세요.
-            </p>
-            <p class="lang en fr de cn">
-              <u>Note</u>:
-              On version 0.8.6, '<u data-locale="config.format.number_abbreviation"></u>'
-              option was accidently set to 'ON' by default.
-            </p>
-            <p class="lang en fr de cn">
-              this option will make numbers which larger than 10000 appear in short form.
-            </p>
-            <p class="patchnote-optional-message lang en fr de cn" data-success="the option was successfully disabled.">
-              In case you don't want this state,
-              <u><a>click here</a></u> to disable it.
-            </p>
-            <p class="lang ja" style="font-size: 1.1em">
-              <u>お知らせ</u>:
-              0.8.6の新機能 '<u data-locale="config.format.number_abbreviation"></u>'
-              のデフォルト値がONに正しく設定されているミスがありました。
-            </p>
-            <p class="lang ja" style="font-size: 1.1em">
-              このオプションがONの場合、1万を超えるdpsがk単位で短縮されます。
-            </p>
-            <p class="patchnote-optional-message lang ja" style="font-size: 1.1em" data-success="オプションをOFFにしました。">
-              このような状況を望んでいない場合には、
-              <u><a>こちらをクリック</a></u>してオプションをOFFにしてください。
-            </p>
-            <script>
-'use strict'
-window.addEventListener('load', () => {
-  const opt = window.config? window.config.get('format.number_abbreviation') : true
-
-  $map('.patchnote-optional-message', el => {
-    if(opt)
-      $(el, 'u', 0).addEventListener('click', e => {
-        config.set('format.number_abbreviation', false)
-        config.save()
-        el.textContent = el.getAttribute('data-success')
-        el.style.opacity = 0.5
-      })
-    else
-      el.style.display = 'none'
-  })
-})
-            </script>
-            <br/>
-
             <h3> 0.8.6 'Deprived World' - 2021/05/11 </h3>
-            <p class="lang ko"> - DPS 값이 1만 이상일 때 k 단위로 축약하는 옵션 추가 </p>
-            <p class="lang en fr de cn"> - 'Abbreviate numbers using -k' option added </p>
-            <p class="lang ja"> - 「1000の単位で数値を省略」　のオプションを追加 </p>
-            <p> ex) 12345 → 12<small>.3k</small> </p>
             <h3> 0.8.5 'phantasmagoria' - 2020/12/07 </h3>
-            <p> - fixes OBS config bug </p>
             <h3> 0.8.4 'tears proof masquerade' - 2020/06/17 </h3>
           </li>
         </ul>

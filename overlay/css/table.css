@@ -19,6 +19,7 @@
   flex-basis: 0%;
 }
 .flex-column-i-class            { width: var(--_i-class)rem; } /* replace-hack only */
+.flex-column-i-rank             { width: var(--_i-rank)rem; }
 .flex-column-i-owner            { width: var(--_i-owner)rem; }
 .flex-column-i-name             { width: var(--_i-name)rem; }
 .flex-column-deal-total         { width: var(--_deal-total)rem; }
@@ -74,7 +75,7 @@
 .zero {
   opacity: 0.75;
 }
-.flex-column > small, .smaller-lower-numbers .flex-column > small.dps {
+.flex-column > small:not(.lower), .smaller-lower-numbers .flex-column > small.with-larger-digits {
   font-size: 0.75em;
 }
 .flex-column > small.dps {
@@ -94,6 +95,8 @@
 
 .class-pgl .gauge, .class-mnk .gauge { background: var(--mnk); }
 .class-lnc .gauge, .class-drg .gauge { background: var(--drg); }
+.class-rpr .gauge { background: var(--rpr); }
+.class-sge .gauge { background: var(--sge); }
 .class-arc .gauge, .class-brd .gauge { background: var(--brd); }
 .class-rog .gauge, .class-nin .gauge { background: var(--nin); }
 .class-acn .gauge, .class-smn .gauge { background: var(--smn); }
@@ -347,7 +350,7 @@ footer {
   padding: 0 0.25rem;
   border-left: 0.1rem solid rgba(255, 255, 255, 0.5);
 }
-.footer-stat small,
+.footer-stat small:not(.lower),
 body.smaller-lower-numbers .footer-stat small.with-larger-digits {
   font-size: 0.75em;
 }

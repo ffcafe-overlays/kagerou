@@ -152,9 +152,15 @@ const pInt = function parseLocaledInteger(string) {
 
 const ABBREVIATION_SUFFIXES = ['', 'k', 'M', 'G', 'T']
 
-const formatDps = function formatDPSNumberWithSmalls(number, decimals, abbr, type, forceInt) {
-  number = number || 0
+const formatDps = function formatDPSNumberWithSmalls(number, opt, type, forceInt) {
+  const significant_digit = (opt || {}).significant_digit || {}
+  const abbr = (opt || {}).number_abbreviation || false
+  const sep = (opt || {}).thousands_separator || ''
+
+  let decimals = significant_digit[type || 'dps']
+
   decimals = decimals == null? 2 : +decimals
+  number = number || 0
   type = (type || 'dps') + ' lower'
 
   const exponential = Math.floor(Math.log10(number))
@@ -179,9 +185,18 @@ const formatDps = function formatDPSNumberWithSmalls(number, decimals, abbr, typ
   const upperEndsAt = Math.max(0, number.length - decimalLength - (abbrUnit? 0 : 3))
   const lowerEndsAt = (abbrUnit? 0 : -decimalLength) || undefined
 
+  if(sep === '.') {
+    number = number.replace(/\./, ',')
+  }
   upper = number.slice(0, upperEndsAt)
   lower = number.slice(upperEndsAt, lowerEndsAt)
   tail = lowerEndsAt? number.slice(lowerEndsAt) : suffix
+  if (sep) {
+    upper = upper.replace(/(?!^)(?=(?:\d{3})+($))/gm, sep);
+    if (!abbrUnit && upper) {
+      upper += sep
+    }
+  }
 
   const wrappedLower = '<small class="' + type + '">' + lower + '</small>'
   const wrappedTail = '<small>' + tail + '</small>'

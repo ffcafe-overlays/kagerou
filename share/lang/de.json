@@ -196,12 +196,14 @@
       "blm": "Schwarzmagier (Thaumaturg)",
       "mch": "Maschinist",
       "sam": "Samurai",
+      "rpr": "Schnitter",
       "rdm": "Rotermagier",
       "blu": "Blaumagier",
       "dnc": "Tänzer",
       "whm": "Weißmagier (Druide)",
       "sch": "Gelehrter",
       "ast": "Astrologe",
+      "sge": "Weiser",
       "smn-pet": "Beschwörer (Hermetiker) Carbuncle/Egi",
       "sch-pet": "Gelehrter Egi",
       "mch-pet": "Maschinist Turm",
@@ -218,9 +220,17 @@
         "accuracy": "Fehlschlag (Verfehlt / Angriffe)",
         "critical": "% der kritischen Treffer/Heilungen"
       },
+      "thousands_separator": {
+        "_": "Thousands separator",
+        "none": "None",
+        "period": "Period (.)",
+        "comma": "Comma (,)",
+        "space": "Space"
+      },
       "myname": "Mein Name",
       "use_short_name": "Darstellung von Spielernamen",
       "use_skill_aliases": "Benutze Alias für Fähigkeitsnamen",
+      "numbers": "Format",
       "use_tailing_pct": "*Display % after percentage value",
       "small_lower_numbers": "*Smaller font for under-k digits of DPS",
       "number_abbreviation": "Lassen sie die zahl in einheiten von 1000 weg"
@@ -233,6 +243,7 @@
     "i": {
       "_": "Info",
       "icon": [" ", "Class Icon"],
+      "rank": ["#", "Rank"],
       "class": ["Job", "Klasse/Job"],
       "owner": ["Besitzer", "Besitzer"],
       "name": ["Name", "Name"]

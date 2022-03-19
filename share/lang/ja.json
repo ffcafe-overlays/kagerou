@@ -196,12 +196,14 @@
       "blm": "黒魔道士（呪術士）",
       "mch": "機工士",
       "sam": "侍",
+      "rpr": "リーパー",
       "rdm": "赤魔道士",
       "blu": "青魔道士",
       "whm": "白魔道士（幻術士）",
       "sch": "学者",
       "ast": "占星術師",
       "dnc": "踊り子",
+      "sge": "賢者",
       "smn-pet": "エギ・カーバンクル",
       "sch-pet": "フェアリー",
       "mch-pet": "オートタレット",
@@ -218,11 +220,19 @@
         "accuracy": "命中率",
         "critical": "クリティカル"
       },
+      "thousands_separator": {
+        "_": "千単位の区切り文字",
+        "none": "無し",
+        "comma": "カンマ (,)",
+        "period": "ピリオド (.)",
+        "space": "スペース ( )"
+      },
       "myname": "名前",
       "use_short_name": "名前をイニシャルで表示",
       "use_skill_aliases": "スキル名の略称を使用",
+      "numbers": "数値の表示形式",
       "use_tailing_pct": "割合値の後ろに％記号を表示",
-      "small_lower_numbers": "DPSの1000未満を小さく表示",
+      "small_lower_numbers": "1000未満を小さく表示",
       "number_abbreviation": "1000の単位で数値を省略"
     },
     "element": {
@@ -233,6 +243,7 @@
     "i": {
       "_": "情報",
       "icon": [" ", "クラスアイコン"],
+      "rank": ["#", "ランク"],
       "class": ["Job", "クラス・"],
       "owner": ["Owner", "オーナー"],
       "name": ["名前", "名前"]
@@ -251,7 +262,7 @@
       "direct": ["Direct", "Direct Hit%"],
       "crit_direct": ["!!!", "Critical Direct Hit% (!!!)"],
       "crittypes": ["D/!/!!!", "Critical回数まとめ (D/!/!!!)"],
-      "crittypes": ["D/!/!!!", "Critical% まとめ"],
+      "critpcts": ["D/!/!!!", "Critical% まとめ"],
       "max": ["Max", "Maxhit (スキル名を除く)"],
       "maxskill": ["Max", "Maxhitのスキル名"],
       "maxhit": ["Maxhit", "Maxhit"],
