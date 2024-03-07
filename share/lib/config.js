@@ -11,7 +11,7 @@ window.CONFIG_DEFAULT = {
     'resize-factor': 1,
     'body-margin': '0.25rem',
     'body-font':
-      "'Lato', 'Source Han Sans', 'Meiryo UI', '맑은 고딕', sans-serif",
+      "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif",
     // header / ui
     'nav-opacity': 1,
     'nav-bg': 'rgba(31, 31, 31, 0.9)',
