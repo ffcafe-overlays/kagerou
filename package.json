@@ -3,7 +3,7 @@
   "packageManager": "yarn@4.1.1",
   "scripts": {
     "dev": "parcel serve",
-    "build": "parcel build --public-url ./"
+    "build": "parcel build --public-url /kagerou/"
   },
   "devDependencies": {
     "@parcel/transformer-inline-string": "2.12.0",
