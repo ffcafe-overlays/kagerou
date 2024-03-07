@@ -26,7 +26,7 @@
     }
 
     load(lang, callback, forceReload) {
-      if (!lang) lang = this.current || 'en'
+      if (!lang) lang = this.current || 'cn'
 
       if (lang in this.L && forceReload) {
         if (callback) callback(this.L[lang])

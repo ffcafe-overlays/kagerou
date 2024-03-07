@@ -5,7 +5,7 @@ window.CODENAME = 'minne'
 window.DESCRIPTION = '記憶の片隅で眠っていた いつか聴いた旋律'
 
 window.CONFIG_DEFAULT = {
-  lang: 'ko',
+  lang: 'cn',
   style: {
     // body
     'resize-factor': 1,
