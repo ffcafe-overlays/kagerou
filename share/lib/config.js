@@ -1,16 +1,17 @@
 'use strict'
 
-const VERSION = '0.8.14'
-const CODENAME = 'minne'
-const DESCRIPTION = '記憶の片隅で眠っていた いつか聴いた旋律'
+window.VERSION = '0.8.14'
+window.CODENAME = 'minne'
+window.DESCRIPTION = '記憶の片隅で眠っていた いつか聴いた旋律'
 
-const CONFIG_DEFAULT = {
+window.CONFIG_DEFAULT = {
   lang: 'ko',
   style: {
     // body
     'resize-factor': 1,
     'body-margin': '0.25rem',
-    'body-font': "'Lato', 'Source Han Sans', 'Meiryo UI', '맑은 고딕', sans-serif",
+    'body-font':
+      "'Lato', 'Source Han Sans', 'Meiryo UI', '맑은 고딕', sans-serif",
     // header / ui
     'nav-opacity': 1,
     'nav-bg': 'rgba(31, 31, 31, 0.9)',
@@ -31,7 +32,7 @@ const CONFIG_DEFAULT = {
     'shadow-text': '0 0 0.125em rgba(0, 0, 0, 1)',
     'font-size-small': '0.75rem',
     'gauge-height': '10%',
-    'graph-height': '1.5rem'
+    'graph-height': '1.5rem',
   },
   tabs: [
     {
@@ -46,9 +47,10 @@ const CONFIG_DEFAULT = {
         'deal.per_second',
         'deal.critical',
         'deal.direct',
-        'deal.crit_direct'
-      ]
-    }, {
+        'deal.crit_direct',
+      ],
+    },
+    {
       id: 1,
       label: 'Tank',
       width: 1,
@@ -59,9 +61,10 @@ const CONFIG_DEFAULT = {
         'deal.per_second',
         'tank.damage',
         'tank.heal',
-        'etc.death'
-      ]
-    }, {
+        'etc.death',
+      ],
+    },
+    {
       id: 2,
       label: 'Heal',
       width: 1,
@@ -73,20 +76,16 @@ const CONFIG_DEFAULT = {
         'heal.per_second',
         'heal.total',
         'heal.over',
-        'heal.swing'
-      ]
-    }, {
+        'heal.swing',
+      ],
+    },
+    {
       id: 3,
       label: '24',
       width: 3,
       sort: 'deal.total',
-      col: [
-        'i.icon',
-        'i.name',
-        'deal.per_second',
-        'deal.swing'
-      ]
-    }
+      col: ['i.icon', 'i.name', 'deal.per_second', 'deal.swing'],
+    },
   ],
   colwidth: {
     '_i-class': 2,
@@ -130,7 +129,7 @@ const CONFIG_DEFAULT = {
     '_heal-maxskill': 4,
     '_etc-powerdrain': 4,
     '_etc-powerheal': 4,
-    '_etc-death': 2
+    '_etc-death': 2,
   },
   color: {
     'gauge-default': '#444',
@@ -158,8 +157,8 @@ const CONFIG_DEFAULT = {
     'smn-pet': 'rgba(46, 125, 50, 0.5)',
     'sch-pet': 'rgba(121, 134, 203, 0.5)',
     'mch-pet': 'rgba(0, 151, 167, 0.5)',
-    'chocobo': '#444',
-    'limit-break': '#444'
+    chocobo: '#444',
+    'limit-break': '#444',
   },
   format: {
     significant_digit: {
@@ -167,7 +166,7 @@ const CONFIG_DEFAULT = {
       damage: 0,
       hps: 0,
       accuracy: 0,
-      critical: 0
+      critical: 0,
     },
     thousands_separator: '',
     merge_pet: true,
@@ -176,22 +175,22 @@ const CONFIG_DEFAULT = {
     use_skill_aliases: true,
     use_tailing_pct: true,
     small_lower_numbers: false,
-    number_abbreviation: false
+    number_abbreviation: false,
   },
   filter: {
     unusual_spaces: false,
     non_combatant: false,
-    jobless: true
+    jobless: true,
   },
   element: {
     'narrow-nav': true,
     'hide-footer': false,
-    'use-header-instead': false
+    'use-header-instead': false,
   },
   footer: {
     rank: true,
     rdps: true,
-    rhps: false
+    rhps: false,
   },
   custom_css: `
 /* 여기에 사용자 스타일시트를 작성합니다.
@@ -205,55 +204,104 @@ const CONFIG_DEFAULT = {
  * some config value can be loaded by var(). */
 
 /* .gauge { -webkit-filter: blur(0.2rem); } */
-`
+`,
 }
 
-const MIGRATE_MAP = {
-  'color.gnb': { if: _ => !_, action: 'default' },
-  'color.blu': { if: _ => !_, action: 'default' },
-  'color.dnc': { if: _ => !_, action: 'default' }
+window.MIGRATE_MAP = {
+  'color.gnb': { if: (_) => !_, action: 'default' },
+  'color.blu': { if: (_) => !_, action: 'default' },
+  'color.dnc': { if: (_) => !_, action: 'default' },
 }
 
-const CONFIG_KEY_SHOULD_OVERRIDE = [
-  'tabs'
-]
+window.CONFIG_KEY_SHOULD_OVERRIDE = ['tabs']
 
-const CONFIG_KEY_SHOULDNT_EXPORTED = [
+window.CONFIG_KEY_SHOULDNT_EXPORTED = [
   'style.resize-factor',
-  'style.nav-opacity'
+  'style.nav-opacity',
 ]
 
-const COLUMN_SORTABLE = [
+window.COLUMN_SORTABLE = [
   'deal.per_second',
   'deal.total',
   'tank.damage',
   'tank.heal',
   'heal.per_second',
   'heal.total',
-  '-etc.death'
+  '-etc.death',
 ]
-const COLUMN_MERGEABLE = [
-  'encdps', 'damage', 'damage%',
-  'swings', 'misses', 'hitfailed',
-  'crithits', 'damagetaken', 'healstaken',
-  'enchps', 'healed', 'healed%',
-  'heals', 'critheals', 'cures',
-  'powerdrain', 'powerheal',
-  'Last10DPS', 'Last30DPS', 'Last60DPS'
+window.COLUMN_MERGEABLE = [
+  'encdps',
+  'damage',
+  'damage%',
+  'swings',
+  'misses',
+  'hitfailed',
+  'crithits',
+  'damagetaken',
+  'healstaken',
+  'enchps',
+  'healed',
+  'healed%',
+  'heals',
+  'critheals',
+  'cures',
+  'powerdrain',
+  'powerheal',
+  'Last10DPS',
+  'Last30DPS',
+  'Last60DPS',
 ]
-const COLUMN_USE_LARGER = {
-  'MAXHIT': ['MAXHIT', 'maxhit'],
-  'MAXHEAL': ['MAXHEAL', 'maxheal']
+window.COLUMN_USE_LARGER = {
+  MAXHIT: ['MAXHIT', 'maxhit'],
+  MAXHEAL: ['MAXHEAL', 'maxheal'],
 }
 
-const VALID_PLAYER_JOBS = [
-  'GLA', 'GLD', 'MRD', 'PUG', 'PGL', 'LNC', 'ROG', 'ARC', 'THM', 'ACN', 'CNJ',
-  'PLD', 'WAR', 'MNK', 'DRG', 'NIN', 'RPR', 'BRD', 'BLM', 'SMN', 'SCH', 'WHM',
-  'DRK', 'MCH', 'AST', 'SGE', 'SAM', 'RDM', 'BLU', 'GNB', 'DNC',
-  'CRP', 'BSM', 'ARM', 'GSM', 'LTW', 'WVR', 'ALC', 'CUL', 'MIN', 'BTN', 'FSH'
+window.VALID_PLAYER_JOBS = [
+  'GLA',
+  'GLD',
+  'MRD',
+  'PUG',
+  'PGL',
+  'LNC',
+  'ROG',
+  'ARC',
+  'THM',
+  'ACN',
+  'CNJ',
+  'PLD',
+  'WAR',
+  'MNK',
+  'DRG',
+  'NIN',
+  'RPR',
+  'BRD',
+  'BLM',
+  'SMN',
+  'SCH',
+  'WHM',
+  'DRK',
+  'MCH',
+  'AST',
+  'SGE',
+  'SAM',
+  'RDM',
+  'BLU',
+  'GNB',
+  'DNC',
+  'CRP',
+  'BSM',
+  'ARM',
+  'GSM',
+  'LTW',
+  'WVR',
+  'ALC',
+  'CUL',
+  'MIN',
+  'BTN',
+  'FSH',
 ]
 
-const PET_MAPPING = {
+window.PET_MAPPING = {
   '카벙클 에메랄드': 'acn-pet',
   '카벙클 토파즈': 'acn-pet',
   '카벙클 루비': 'acn-pet',
@@ -270,8 +318,8 @@ const PET_MAPPING = {
   'Garuda-Egi': 'garuda',
   'Titan-Egi': 'titan',
   'Ifrit-Egi': 'ifrit',
-  'Eos': 'eos',
-  'Selene': 'selene',
+  Eos: 'eos',
+  Selene: 'selene',
   'Rook Autoturret': 'rook',
   'Bishop Autoturret': 'bishop',
   'カーバンクル・エメラルド': 'acn-pet',
@@ -284,21 +332,21 @@ const PET_MAPPING = {
   'フェアリー・セレネ': 'selene',
   'オートタレット・ルーク': 'rook',
   'オートタレット・ビショップ': 'bishop',
-  '蓝宝石兽': 'acn-pet',
-  '黄宝石兽': 'acn-pet',
-  '红宝石兽': 'acn-pet',
-  '迦楼罗之灵': 'garuda',
-  '泰坦之灵': 'titan',
-  '伊芙利特之灵': 'ifrit',
-  '朝日小仙女': 'eos',
-  '夕月小仙女': 'selene',
-  '车式浮空炮塔': 'rook',
-  '象式浮空炮塔': 'bishop',
+  蓝宝石兽: 'acn-pet',
+  黄宝石兽: 'acn-pet',
+  红宝石兽: 'acn-pet',
+  迦楼罗之灵: 'garuda',
+  泰坦之灵: 'titan',
+  伊芙利特之灵: 'ifrit',
+  朝日小仙女: 'eos',
+  夕月小仙女: 'selene',
+  车式浮空炮塔: 'rook',
+  象式浮空炮塔: 'bishop',
   // TODO: add another languages
 }
 
 /*
-const APRIL_FOOL_CLASS_REMAP = {
+window.APRIL_FOOL_CLASS_REMAP = {
   'pld': 'gla', 'gla': 'pld',
   'war': 'mrd', 'mrd': 'war',
   'drk': 'min', 'min': 'drk',
@@ -319,11 +367,11 @@ const APRIL_FOOL_CLASS_REMAP = {
 }
 */
 
-const COLUMN_INDEX = {
+window.COLUMN_INDEX = {
   i: {
     icon: {
-      v: _ => ' '
-    }/* {
+      v: (_) => ' ',
+    } /* {
       v: _ => resolveClass(_.Job, _.name)[0],
       f: _ => {
         let job = _.toLowerCase()
@@ -338,35 +386,37 @@ const COLUMN_INDEX = {
       }
     } */,
     class: {
-      v: _ => {
+      v: (_) => {
         let job = resolveClass(_.Job, _.name)[0]
-        if(job === 'gld') job = 'gla'
+        if (job === 'gld') job = 'gla'
         return job
-      }
+      },
     },
     rank: {
-      v: _ => _.rank,
-      f: _ => `#${_}`
+      v: (_) => _.rank,
+      f: (_) => `#${_}`,
     },
     owner: {
-      v: _ => resolveClass(_.Job, _.name)[2],
-      f: _ => `<span>${_}</span>`
+      v: (_) => resolveClass(_.Job, _.name)[2],
+      f: (_) => `<span>${_}</span>`,
     },
     name: {
-      v: _ => resolveClass(_.Job, _.name)[1],
+      v: (_) => resolveClass(_.Job, _.name)[1],
       f: (_, conf) => {
         let name = _.split(' ')
         let flag = +conf.format.use_short_name
         let you = isYou(_, conf.format.myname)
-        if(!you && name.length >= 2) {
-          if((flag & 1) && typeof name[0] === 'string') // Firstname
+        if (!you && name.length >= 2) {
+          if (flag & 1 && typeof name[0] === 'string')
+            // Firstname
             name[0] = name[0][0] + '.'
-          if((flag & 2) && typeof name[1] === 'string') // Lastname
+          if (flag & 2 && typeof name[1] === 'string')
+            // Lastname
             name[1] = name[1][0] + '.'
         }
         return name.join(' ')
-      }
-    }
+      },
+    },
   },
   // deal
   deal: {
@@ -374,119 +424,146 @@ const COLUMN_INDEX = {
       v: 'encdps',
       f: (_, conf) => {
         _ = pFloat(_)
-        if(isNaN(_)) {
+        if (isNaN(_)) {
           return '---'
         }
         return formatDps(_, conf.format)
-      }
+      },
     },
     pct: {
-      v: _ => parseInt(_['damage%']),
+      v: (_) => parseInt(_['damage%']),
       f: (_, conf) => {
-        if(isNaN(_)) return '---'
-        else if(_ >= 100) return '100'
-        else return _ + (conf.format.use_tailing_pct? '<small>%</small>' : '')
-      }
+        if (isNaN(_)) return '---'
+        else if (_ >= 100) return '100'
+        else return _ + (conf.format.use_tailing_pct ? '<small>%</small>' : '')
+      },
     },
     total: {
       v: 'damage',
-      f: (_, conf) => formatDps(_, conf.format, 'damage', true)
+      f: (_, conf) => formatDps(_, conf.format, 'damage', true),
     },
     failure: {
-      v: _ => _.swings > 0? _.misses / _.swings * 100 : -1,
+      v: (_) => (_.swings > 0 ? (_.misses / _.swings) * 100 : -1),
       f: (_, conf) =>
-        _ < 0?
-          '-' : _.toFixed(conf.format.significant_digit.accuracy) +
-          (conf.format.use_tailing_pct? '<small>%</small>' : '')
+        _ < 0
+          ? '-'
+          : _.toFixed(conf.format.significant_digit.accuracy) +
+            (conf.format.use_tailing_pct ? '<small>%</small>' : ''),
     },
     accuracy: {
-      v: _ => _.swings > 0? (1 - _.misses/_.swings) * 100 : -1,
+      v: (_) => (_.swings > 0 ? (1 - _.misses / _.swings) * 100 : -1),
       f: (_, conf) =>
-        _ < 0?
-          '-' :  _.toFixed(conf.format.significant_digit.accuracy) +
-          (conf.format.use_tailing_pct? '<small>%</small>' : '')
+        _ < 0
+          ? '-'
+          : _.toFixed(conf.format.significant_digit.accuracy) +
+            (conf.format.use_tailing_pct ? '<small>%</small>' : ''),
     },
     swing: 'swings',
     miss: 'misses',
     hitfail: 'hitfailed',
     critical: {
-      v: _ => (parseInt(_.crithits) || 0) / (parseInt(_.swings) || 1) * 100,
-      f: (_, conf) => _.toFixed(conf.format.significant_digit.critical) +
-                      (conf.format.use_tailing_pct? '<small>%</small>' : '')
+      v: (_) => ((parseInt(_.crithits) || 0) / (parseInt(_.swings) || 1)) * 100,
+      f: (_, conf) =>
+        _.toFixed(conf.format.significant_digit.critical) +
+        (conf.format.use_tailing_pct ? '<small>%</small>' : ''),
     },
     direct: {
-      v: _ => 'DirectHitCount' in _? (parseInt(_.DirectHitCount) || 0) / (parseInt(_.swings) || 1) * 100 : null,
-      f: (_, conf) => _ !== null?
-        _.toFixed(conf.format.significant_digit.critical) +
-        (conf.format.use_tailing_pct? '<small>%</small>' : '') : '-'
+      v: (_) =>
+        'DirectHitCount' in _
+          ? ((parseInt(_.DirectHitCount) || 0) / (parseInt(_.swings) || 1)) *
+            100
+          : null,
+      f: (_, conf) =>
+        _ !== null
+          ? _.toFixed(conf.format.significant_digit.critical) +
+            (conf.format.use_tailing_pct ? '<small>%</small>' : '')
+          : '-',
     },
     crit_direct: {
-      v: _ => 'CritDirectHitCount' in _? (parseInt(_.CritDirectHitCount) || 0) / (parseInt(_.swings) || 1) * 100 : null,
-      f: (_, conf) => _ !== null?
-        _.toFixed(conf.format.significant_digit.critical) +
-        (conf.format.use_tailing_pct? '<small>%</small>' : '') : '-'
+      v: (_) =>
+        'CritDirectHitCount' in _
+          ? ((parseInt(_.CritDirectHitCount) || 0) /
+              (parseInt(_.swings) || 1)) *
+            100
+          : null,
+      f: (_, conf) =>
+        _ !== null
+          ? _.toFixed(conf.format.significant_digit.critical) +
+            (conf.format.use_tailing_pct ? '<small>%</small>' : '')
+          : '-',
     },
     crittypes: {
-      v: _ => [_.DirectHitCount || '-', _.crithits || '-', _.CritDirectHitCount || '-'],
-      f: _ => _.join('/')
+      v: (_) => [
+        _.DirectHitCount || '-',
+        _.crithits || '-',
+        _.CritDirectHitCount || '-',
+      ],
+      f: (_) => _.join('/'),
     },
     critpcts: {
-      v: _ => [_.DirectHitCount || 0, _.crithits || 0, _.CritDirectHitCount || 0, _.swings || 1],
+      v: (_) => [
+        _.DirectHitCount || 0,
+        _.crithits || 0,
+        _.CritDirectHitCount || 0,
+        _.swings || 1,
+      ],
       f: (_, conf) => {
         const swings = parseInt(_.pop()) || 1
-        _ = _.map(_ => (parseInt(_) / swings * 100).toFixed(0))
+        _ = _.map((_) => ((parseInt(_) / swings) * 100).toFixed(0))
 
-        if(conf.format.use_tailing_pct) {
-          return _.map(_ => _ + '<small>%</small> ').join('')
+        if (conf.format.use_tailing_pct) {
+          return _.map((_) => _ + '<small>%</small> ').join('')
         } else {
           return _.join('/')
         }
-      }
+      },
     },
     max: {
       v: 'MAXHIT',
-      f: (_, conf) => formatDps(_, conf.format, 'damage', true)
+      f: (_, conf) => formatDps(_, conf.format, 'damage', true),
     },
     maxhit: {
       v: 'maxhit',
       f: (_, conf) => {
         let map = l.skillname(_, conf.format.use_skill_aliases)
-        return `${formatDps(map[1], conf.format, 'damage', true)} <small>${map[0]}</small>`
-      }
+        return `${formatDps(map[1], conf.format, 'damage', true)} <small>${
+          map[0]
+        }</small>`
+      },
     },
     maxskill: {
       v: 'maxhit',
-      f: (_, conf) => l.skillname(_, conf.format.use_skill_aliases)[0]
+      f: (_, conf) => l.skillname(_, conf.format.use_skill_aliases)[0],
     },
     last10: {
       v: 'Last10DPS',
-      f: (_, conf) => isNaN(_)? '0' : formatDps(_, conf.format)
+      f: (_, conf) => (isNaN(_) ? '0' : formatDps(_, conf.format)),
     },
     last30: {
       v: 'Last30DPS',
-      f: (_, conf) => isNaN(_)? '0' : formatDps(_, conf.format)
+      f: (_, conf) => (isNaN(_) ? '0' : formatDps(_, conf.format)),
     },
     last60: {
       v: 'Last60DPS',
-      f: (_, conf) => isNaN(_)? '0' : formatDps(_, conf.format)
-    }/*,
+      f: (_, conf) => (isNaN(_) ? '0' : formatDps(_, conf.format)),
+    } /*,
     last180: {
       v: _ => 'Last180DPS' in _? _.Last180 : NaN
-    }*/
+    }*/,
   },
   // tank
   tank: {
     damage: {
       v: 'damagetaken',
-      f: (_, conf) => '-' + formatDps(_, conf.format, 'damage', true)
+      f: (_, conf) => '-' + formatDps(_, conf.format, 'damage', true),
     },
     heal: {
       v: 'healstaken',
-      f: (_, conf) => '+' + formatDps(_, conf.format, 'damage', true)
+      f: (_, conf) => '+' + formatDps(_, conf.format, 'damage', true),
     },
     parry: 'ParryPct',
     block: 'BlockPct',
-    threat_delta: 'threatdelta'
+    threat_delta: 'threatdelta',
   },
   // heal
   heal: {
@@ -494,78 +571,77 @@ const COLUMN_INDEX = {
       v: 'enchps',
       f: (_, conf) => {
         _ = pFloat(_)
-        return isNaN(_)?
-          '0'
-        : formatDps(_, conf.format, 'hps')
-      }
+        return isNaN(_) ? '0' : formatDps(_, conf.format, 'hps')
+      },
     },
     pct: {
-      v: _ => parseInt(_['healed%']),
-      f: _ => {
-        if(isNaN(_)) return '---'
-        else if(_ >= 100) return '100'
+      v: (_) => parseInt(_['healed%']),
+      f: (_) => {
+        if (isNaN(_)) return '---'
+        else if (_ >= 100) return '100'
         else return _ + '<small>%</small>'
-      }
+      },
     },
     total: {
       v: 'healed',
-      f: (_, conf) => formatDps(_, conf.format, 'damage', true)
+      f: (_, conf) => formatDps(_, conf.format, 'damage', true),
     },
     over: {
-      v: _ => _['OverHealPct'],
-      f: _ => _ && _.replace? _.replace('%', '<small>%</small>') : '---'
+      v: (_) => _['OverHealPct'],
+      f: (_) => (_ && _.replace ? _.replace('%', '<small>%</small>') : '---'),
     },
     swing: 'heals',
     critical: {
-      v: _ => (parseInt(_.critheals) || 0) / (parseInt(_.heals) || 1) * 100,
-      f: (_, conf) => (_).toFixed(conf.format.significant_digit.critical) + (conf.format.use_tailing_pct? '<small>%</small>' : '')
+      v: (_) => ((parseInt(_.critheals) || 0) / (parseInt(_.heals) || 1)) * 100,
+      f: (_, conf) =>
+        _.toFixed(conf.format.significant_digit.critical) +
+        (conf.format.use_tailing_pct ? '<small>%</small>' : ''),
     },
     cure: 'cures',
     max: 'MAXHEALWARD',
     maxhit: {
       v: 'maxhealward',
-      f: (_, conf) => l.skillname(_, conf.format.use_skill_aliases).join(': ')
+      f: (_, conf) => l.skillname(_, conf.format.use_skill_aliases).join(': '),
     },
     maxskill: {
       v: 'maxhealward',
-      f: (_, conf) => l.skillname(_, conf.format.use_skill_aliases)[0]
-    }
+      f: (_, conf) => l.skillname(_, conf.format.use_skill_aliases)[0],
+    },
   },
   etc: {
     powerdrain: 'powerdrain',
     powerheal: 'powerheal',
-    death: 'deaths'
-  }
+    death: 'deaths',
+  },
 }
-
-;(function() {
-
+;(function () {
   const copy = function copyByJsonString(o) {
     return JSON.parse(JSON.stringify(o))
   }
 
   const attachStyle = function attachStyle(id, section, css) {
     let variables = []
-    if(!css) {
+    if (!css) {
       css = ''
     }
 
-    if(section) {
-      if(!Array.isArray(section)) {
+    if (section) {
+      if (!Array.isArray(section)) {
         section = [section]
       }
-      section = section.map(_ => config.config[_])
+      section = section.map((_) => config.config[_])
 
       variables = Object.assign.apply(null, [variables].concat(section))
     }
 
-    for(let k in variables) {
+    for (let k in variables) {
       css = css.replace(new RegExp(`var\\(--${k}\\)`, 'g'), variables[k])
     }
 
     let oldNode = document.getElementById(id)
 
-    if(oldNode) { // (re)loadCSS
+    if (oldNode) {
+      // (re)loadCSS
       oldNode.innerHTML = css
     } else {
       let node = document.createElement('style')
@@ -576,8 +652,7 @@ const COLUMN_INDEX = {
   }
 
   class Config {
-
-    constructor() { }
+    constructor() {}
 
     load() {
       let localConfig = copy(CONFIG_DEFAULT)
@@ -586,23 +661,24 @@ const COLUMN_INDEX = {
 
       try {
         o = JSON.parse(rawJson)
-      } catch(e) { // broken!
+      } catch (e) {
+        // broken!
         o = null
       }
 
-      if(!o) {
+      if (!o) {
         this.init()
       } else {
         this.config = {}
 
-        for(let k in localConfig) {
-          if(CONFIG_KEY_SHOULD_OVERRIDE.indexOf(k) !== -1) {
-            if(k === 'tabs' && o[k].length === 0) {
+        for (let k in localConfig) {
+          if (CONFIG_KEY_SHOULD_OVERRIDE.indexOf(k) !== -1) {
+            if (k === 'tabs' && o[k].length === 0) {
               this.config[k] = localConfig[k]
             } else {
               this.config[k] = o[k]
             }
-          } else if(typeof localConfig[k] !== 'object') {
+          } else if (typeof localConfig[k] !== 'object') {
             this.config[k] = o[k]
           } else {
             this.config[k] = updateObject(localConfig[k], o[k])
@@ -614,17 +690,19 @@ const COLUMN_INDEX = {
     }
 
     migrate() {
-      if(!this.config) { return false }
+      if (!this.config) {
+        return false
+      }
 
-      Object.keys(MIGRATE_MAP).map(k => {
+      Object.keys(MIGRATE_MAP).map((k) => {
         let v = this.get(k)
         let cond = MIGRATE_MAP[k]
-        if(cond.if(v)) {
+        if (cond.if(v)) {
           let result
-          if(typeof cond.action === 'function') {
+          if (typeof cond.action === 'function') {
             result = cond.action(v)
           } else {
-            switch(cond.action) {
+            switch (cond.action) {
               case 'default':
                 result = resolveDotIndex(CONFIG_DEFAULT, k)
                 break
@@ -639,30 +717,20 @@ const COLUMN_INDEX = {
       let localConfig = copy(CONFIG_DEFAULT)
       this.config = localConfig
       let lang = (navigator.language || '').split('-')[0]
-      if(['ko', 'en', 'ja', 'de'].indexOf(lang) !== -1){
+      if (['ko', 'en', 'ja', 'de', 'zh'].indexOf(lang) !== -1) {
+        if (lang === 'zh') lang = 'cn'
         this.set('lang', lang)
       }
       this.save()
     }
 
-    loadStyle(path, section) {
-      if(!Array.isArray(path)) {
-        path = [path]
-      }
+    loadStyle(paths, section) {
+      for (const [id, handler] of Object.entries(paths)) {
+        const sanitizedId = id.replace(/[^a-z]/g, '_')
 
-      for(let p of path){
-        let sanitizedId = p.replace(/[^a-z]/g, '_')
-
-        let xhr = new XMLHttpRequest()
-        xhr.open('GET', p, true)
-        xhr.onreadystatechange = _ => {
-          if(xhr.readyState === 4) {
-            if(xhr.status === 200) {
-              attachStyle(sanitizedId, section, xhr.responseText)
-            }
-          }
-        }
-        xhr.send(null)
+        handler().then((css) => {
+          attachStyle(sanitizedId, section, css)
+        })
       }
     }
 
@@ -671,35 +739,40 @@ const COLUMN_INDEX = {
     }
 
     attachOverlayStyle() {
-      this.loadStyle([
-        'css/index.css',
-        'css/nav.css'
-      ], 'style')
-      this.loadStyle('css/table.css', ['style', 'colwidth', 'color'])
+      this.loadStyle(
+        {
+          'css/index.css': () => import('bundle-text:../css/index.css', {}),
+          'css/nav.css': () => import('bundle-text:../css/nav.css'),
+        },
+        'style',
+      )
+      this.loadStyle(
+        {
+          'css/table.css': () => import('bundle-text:../css/table.css'),
+        },
+        ['style', 'colwidth', 'color'],
+      )
 
       attachStyle(
         'custom_css',
         ['style', 'colwidth', 'color'],
-        config.get('custom_css') || ''
+        config.get('custom_css') || '',
       )
-
     }
 
     get(k) {
-      if(!this.config) return false
-      if(k) return resolveDotIndex(this.config, k)
+      if (!this.config) return false
+      if (k) return resolveDotIndex(this.config, k)
       else return this.config
     }
 
     set(k, v) {
-      if(k)
-        return resolveDotIndex(this.config, k, v)
-      else
-        this.config = v
+      if (k) return resolveDotIndex(this.config, k, v)
+      else this.config = v
     }
 
     update(k, v) {
-      if(k === 'tabs') {
+      if (k === 'tabs') {
         this.config.tabs = v
       } else {
         updateObject(this.config[k], v)
@@ -707,16 +780,16 @@ const COLUMN_INDEX = {
     }
 
     toggle(k) {
-      if(!this.config) return false
+      if (!this.config) return false
 
       let v = this.get(k)
-      if(typeof v !== 'boolean') return false
+      if (typeof v !== 'boolean') return false
       this.set(k, !v)
       return !v
     }
 
     reset(key) {
-      if(key) {
+      if (key) {
         this.set(key, resolveDotIndex(CONFIG_DEFAULT, key))
         this.save()
       } else {
@@ -728,10 +801,8 @@ const COLUMN_INDEX = {
     save() {
       localStorage.setItem('kagerou_config', JSON.stringify(this.config))
     }
-
   }
 
   window.Config = Config
   localStorage.getItem('kagerou_config')
-
 })()

@@ -4,21 +4,9 @@
     <meta charset="utf-8" />
     <title> kagerou - Settings </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,700">
-    <link rel="stylesheet" href="../overlay/css/reset.css?v=viator-in-vitro" />
-    <link rel="stylesheet" href="index.css?v=viator-in-vitro" />
-    <link rel="stylesheet" href="media.css?v=viator-in-vitro" />
-    <link rel="stylesheet" href="dialog.css?v=viator-in-vitro" />
-    <link rel="stylesheet" href="../share/css/job-icons.css?v=viator-in-vitro" />
-    <script src="lib/sortable-1.10.2-min.js"> </script>
-    <script src="../share/lib/util.js?v=viator-in-vitro"> </script>
-    <script src="../share/lib/locale.js?v=viator-in-vitro"> </script>
-    <script src="../share/lib/config.js?v=viator-in-vitro"> </script>
-    <script src="lib/dialog.js?v=viator-in-vitro"> </script>
-    <script src="lib/ui.js?v=viator-in-vitro"> </script>
-    <script src="lib/tabconfig.js?v=viator-in-vitro"> </script>
-    <script src="lib/import-export.js?v=viator-in-vitro"> </script>
+    <link rel="stylesheet" href="index.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js"> </script>
+    <script src="index.js" type="module"></script>
 
     <template id="template-tab">
       <li class="draggable">
@@ -83,34 +71,6 @@
         </div>
       </div>
     </template>
-
-    <script>
-'use strict'
-
-window.config = new Config()
-
-config.load()
-config.setResizeFactor()
-
-window.locale = new Locale(window.config.get('lang'))
-
-document.addEventListener('DOMContentLoaded', _ => {
-  window.tabconfig = new Tabconfig()
-  window.editor = ace.edit('editor')
-  editor.$blockScrolling = Infinity
-  editor.setTheme('ace/theme/tomorrow_night_eighties')
-
-  let session = editor.getSession()
-  session.setMode('ace/mode/css')
-  session.setTabSize(2)
-  session.setUseSoftTabs(true)
-
-  editor.setValue(config.get('custom_css') || (CONFIG_DEFAULT.custom_css + '\n'))
-  editor.gotoLine(1)
-
-  setTimeout(_ => window.locale.localizeAll(), 500)
-})
-    </script>
   </head>
   <body>
     <input type="checkbox" class="hidden" id="aside-toggle" />

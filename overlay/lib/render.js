@@ -1,10 +1,18 @@
 'use strict'
-
-;(function(){
-
+;(function () {
   const NON_COMBATANT_JOBS = [
-    'alc', 'arm', 'bsm', 'btn', 'crp', 'cul',
-    'fsh', 'gsm', 'ltw', 'min', 'wvr', 'error'
+    'alc',
+    'arm',
+    'bsm',
+    'btn',
+    'crp',
+    'cul',
+    'fsh',
+    'gsm',
+    'ltw',
+    'min',
+    'wvr',
+    'error',
   ]
 
   const TAB_SORTBY_MIGRATE_MAPPING = {
@@ -17,18 +25,17 @@
     '+enchps': 'heal.per_second',
     '-enchps': 'heal.per_second',
     '+healed': 'heal.total',
-    '-healed': 'heal.total'
+    '-healed': 'heal.total',
   }
 
   class Renderer {
-
     constructor(config) {
       this.current = 0
 
       this.elem = {}
       this.acc = {
         rdps: config.format.significant_digit.dps,
-        rhps: config.format.significant_digit.hps
+        rhps: config.format.significant_digit.hps,
       }
 
       this.standby = true
@@ -39,10 +46,10 @@
     updateConfig(config) {
       this.config = config
       this.tabs = []
-      for(let k in this.config.tabs) {
+      for (let k in this.config.tabs) {
         let current = this.config.tabs[k]
         // migration before 0.2; it's from 2016!!
-        if(current.sort in TAB_SORTBY_MIGRATE_MAPPING) {
+        if (current.sort in TAB_SORTBY_MIGRATE_MAPPING) {
           current.sort = TAB_SORTBY_MIGRATE_MAPPING[current.sort]
         }
         this.tabs[k] = new Row(this.config.tabs[k])
@@ -50,50 +57,52 @@
 
       const useHeader = this.config.element['use-header-instead']
 
-      if(useHeader) {
+      if (useHeader) {
         $('#history-region').innerHTML = [
-          this.config.footer.rank ?
-           '<span class="header-rank">0<small>/1</small></span>' : '',
-          this.config.footer.rdps ?
-           '<span><span class="header-rdps">0</span><small>rdps</small></span>' : '',
-          this.config.footer.rhps ?
-           '<span><span class="header-rhps">0</span><small>rhps</small></span>' : ''
+          this.config.footer.rank
+            ? '<span class="header-rank">0<small>/1</small></span>'
+            : '',
+          this.config.footer.rdps
+            ? '<span><span class="header-rdps">0</span><small>rdps</small></span>'
+            : '',
+          this.config.footer.rhps
+            ? '<span><span class="header-rhps">0</span><small>rhps</small></span>'
+            : '',
         ].join('')
 
-        $map('.footer-stat > span', el => {
+        $map('.footer-stat > span', (el) => {
           el.classList.add('hidden')
         })
       } else {
         $('#history-region').innerHTML = ''
       }
 
-      for(let i in this.config.footer) {
-        if(i === 'recover' || !this.config.footer[i]) {
+      for (let i in this.config.footer) {
+        if (i === 'recover' || !this.config.footer[i]) {
           continue
         }
-        this.elem[i] = useHeader? $('.header-' + i, 0) : $('#' + i)
+        this.elem[i] = useHeader ? $('.header-' + i, 0) : $('#' + i)
       }
     }
 
-    get template() { return this.tabs[this.current] }
+    get template() {
+      return this.tabs[this.current]
+    }
 
     switchTab(id) {
-      if(!this.tabs[id]) {
+      if (!this.tabs[id]) {
         throw new ReferenceError(`Failed to switch to tab '${id}': No such tab`)
       }
       this.current = id
       this.updateHeader()
-      if(window.hist.current)
-        this.update()
+      if (window.hist.current) this.update()
 
       $('#table').setAttribute('data-width', this.tabs[id].tab.width)
     }
 
     browseHistory(id) {
-      if(id === 'current')
-        this.currentHistory = false
-      else
-        this.currentHistory = id
+      if (id === 'current') this.currentHistory = false
+      else this.currentHistory = id
     }
 
     updateHeader() {
@@ -102,14 +111,14 @@
     }
 
     update() {
-      if(!window.hist.currentData) return
+      if (!window.hist.currentData) return
 
-      if(this.standby) {
+      if (this.standby) {
         $('body', 0).classList.remove('standby')
         this.standby = false
       }
 
-      if(!this.currentHistory) {
+      if (!this.currentHistory) {
         this.render(window.hist.current)
       } else {
         this.render(window.hist.browse(this.currentHistory).data)
@@ -121,18 +130,21 @@
       let job = d[0]
       let name = d[1]
 
-      if(this.config.filter.unusual_spaces
-        && !d[2] // not a pet
-        && name != 'Limit Break' // also not a limit break
-        && name.split(' ').length > 1) {
+      if (
+        this.config.filter.unusual_spaces &&
+        !d[2] && // not a pet
+        name != 'Limit Break' && // also not a limit break
+        name.split(' ').length > 1
+      ) {
         return false
       }
-      if(this.config.filter.non_combatant
-        && NON_COMBATANT_JOBS.indexOf(job) != -1) {
+      if (
+        this.config.filter.non_combatant &&
+        NON_COMBATANT_JOBS.indexOf(job) != -1
+      ) {
         return false
       }
-      if(this.config.filter.jobless
-        && job.length == 0) {
+      if (this.config.filter.jobless && job.length == 0) {
         return false
       }
       return true
@@ -142,27 +154,26 @@
       // columns
       let got = data.get(
         this.template.tab.sort,
-        window.config.get('format.merge_pet')
+        window.config.get('format.merge_pet'),
       )
-      let d = got[0].filter(_ => this._testRow(_))
+      let d = got[0].filter((_) => this._testRow(_))
       let max = got[1]
 
-      document
-        .body
-        .classList
-        .toggle('smaller-lower-numbers',
-          max['deal.per_second'] >= 1000 &&
-          window.config.get('format.small_lower_numbers'))
+      document.body.classList.toggle(
+        'smaller-lower-numbers',
+        max['deal.per_second'] >= 1000 &&
+          window.config.get('format.small_lower_numbers'),
+      )
 
       let playerRank = 0
 
       let table = $('#table')
       table.innerHTML = ''
 
-      for(let i in d) {
+      for (let i in d) {
         let o = d[i]
         o.rank = parseInt(i) + 1
-        if(isYou(o.name, this.config.format.myname)) {
+        if (isYou(o.name, this.config.format.myname)) {
           playerRank = o.rank
         }
         table.appendChild(this.template.render(o, max))
@@ -179,32 +190,40 @@
       $('#history-time').textContent = data.header.duration
       $('#history-mob').textContent = data.header.title
 
-      if(!this.config.element['hide-footer'] ||
-          this.config.element['use-header-instead']) {
-        if(this.config.footer.rank) {
+      if (
+        !this.config.element['hide-footer'] ||
+        this.config.element['use-header-instead']
+      ) {
+        if (this.config.footer.rank) {
           let el = this.elem.rank
           el.firstChild.textContent = playerRank
           el.lastChild.textContent = '/' + d.length
         }
-        if(this.config.footer.rdps) {
-          this.elem.rdps.innerHTML =
-            formatDps(pFloat(rdps), this.config.format, 'dps')
+        if (this.config.footer.rdps) {
+          this.elem.rdps.innerHTML = formatDps(
+            pFloat(rdps),
+            this.config.format,
+            'dps',
+          )
         }
-        if(this.config.footer.rhps) {
-          this.elem.rhps.innerHTML =
-            formatDps(pFloat(rhps), this.config.format, 'hps')
+        if (this.config.footer.rhps) {
+          this.elem.rhps.innerHTML = formatDps(
+            pFloat(rhps),
+            this.config.format,
+            'hps',
+          )
         }
       }
 
-      if(!this.config.element['use-header-instead']) {
-        $('#history-region').textContent = window.l.zone(data.header.CurrentZoneName)
+      if (!this.config.element['use-header-instead']) {
+        $('#history-region').textContent = window.l.zone(
+          data.header.CurrentZoneName,
+        )
       }
     }
-
   }
 
   class Row {
-
     constructor(tab) {
       this.tab = tab
       this.header = this.render(null)
@@ -212,10 +231,8 @@
     }
 
     _value(v, data) {
-      if(typeof v === 'string')
-        return data[v]
-      else if(typeof v === 'function')
-        return v(data)
+      if (typeof v === 'string') return data[v]
+      else if (typeof v === 'function') return v(data)
     }
 
     part(c, data) {
@@ -224,29 +241,29 @@
       let classes = `flex-column flex-column-${sanitize(c)}`
       let locale
 
-      if(!data) {
+      if (!data) {
         locale = `col.${c}.0`
-        text = window.l.loaded? window.l.get(locale) : '...'
+        text = window.l.loaded ? window.l.get(locale) : '...'
       } else {
         let k = c.substr('+-'.indexOf(c[0]) >= 0)
         const col = resolveDotIndex(COLUMN_INDEX, k)
 
-        if(typeof col === 'string') {
+        if (typeof col === 'string') {
           text = data[col]
         } else {
           text = this._value(col.v, data)
 
-          if(typeof col.f === 'function')
+          if (typeof col.f === 'function')
             text = col.f(text, window.config.get())
         }
-        if(text == 0 || text === '0%' || text === '---') {
+        if (text == 0 || text === '0%' || text === '---') {
           classes += ' zero'
         }
       }
 
       el.innerHTML = text
       el.className = classes
-      if(locale) el.setAttribute('data-locale', locale)
+      if (locale) el.setAttribute('data-locale', locale)
 
       return el
     }
@@ -257,31 +274,29 @@
       let gaugeBy = resolveDotIndex(COLUMN_INDEX, k)
       // this.tab.gauge) <- deprecated
 
-      if(gaugeBy.v) {
+      if (gaugeBy.v) {
         gaugeBy = gaugeBy.v
       }
 
-      if(data !== null) {
+      if (data !== null) {
         let cls = sanitize(COLUMN_INDEX.i.class.v(data))
         el.classList.add('class-' + (cls || 'unknown'))
         el.classList.toggle('me', isYou(data.name, this.owners))
 
-        let width = this._value(gaugeBy, data) / max[this.tab.sort] * 100
+        let width = (this._value(gaugeBy, data) / max[this.tab.sort]) * 100
         el.innerHTML = `<span class="gauge" style="width:${width}%"></span>`
       } else {
         el.id = 'header'
       }
 
-      for(let section of this.tab.col) {
+      for (let section of this.tab.col) {
         el.appendChild(this.part(section, data))
       }
 
       return el
     }
-
   }
 
   window.Renderer = Renderer
   window.Row = Row
-
 })()
