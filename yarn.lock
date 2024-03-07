@@ -2017,6 +2017,7 @@ __metadata:
     "@parcel/transformer-inline-string": "npm:2.12.0"
     "@types/node": "npm:^20.11.25"
     parcel: "npm:^2.12.0"
+    sortablejs: "npm:^1.15.2"
     typescript: "npm:^5.4.2"
   languageName: unknown
   linkType: soft
@@ -2738,6 +2739,13 @@ __metadata:
     ip-address: "npm:^9.0.5"
     smart-buffer: "npm:^4.2.0"
   checksum: 10c0/ac77b515c260473cc7c4452f09b20939e22510ce3ae48385c516d1d5784374d5cc75be3cb18ff66cc985a7f4f2ef8fef84e984c5ec70aad58355ed59241f40a8
+  languageName: node
+  linkType: hard
+
+"sortablejs@npm:^1.15.2":
+  version: 1.15.2
+  resolution: "sortablejs@npm:1.15.2"
+  checksum: 10c0/9b9101f47a46976070f1e7ab45d1850a8754f6e71252506868731292af46a7f1a3add03914fe074cd2a6bdfe8cd6cad149cfa260fe8a53475f5306ae679bf38c
   languageName: node
   linkType: hard
 

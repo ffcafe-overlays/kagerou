@@ -1,4 +1,4 @@
-'use strict'
+import Sortable from 'sortablejs'
 ;(function () {
   const liRender = (_, locale) => {
     let head = `<b data-locale="col.${_.split('.')[0]}._">..</b>`

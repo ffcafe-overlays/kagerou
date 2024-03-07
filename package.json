@@ -20,5 +20,8 @@
   "source": [
     "overlay/index.html",
     "config/index.html"
-  ]
+  ],
+  "dependencies": {
+    "sortablejs": "^1.15.2"
+  }
 }
