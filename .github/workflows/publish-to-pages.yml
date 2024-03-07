@@ -24,11 +24,26 @@ jobs:
           yarn install
           yarn build
 
+      - name: Archive artifact
+        shell: sh
+        run: |
+          echo ::group::Archive artifact
+          tar \
+            --dereference --hard-dereference \
+            --directory "$INPUT_PATH" \
+            -cvf "$RUNNER_TEMP/artifact.tar" \
+            --exclude=.git \
+            --exclude=.github \
+            .
+          echo ::endgroup::
+        env:
+          INPUT_PATH: dist/
       - name: Upload artifact 🎁
         uses: actions/upload-artifact@v4
         with:
-          name: dist
-          path: dist/
+          name: github-pages
+          path: ${{ runner.temp }}/artifact.tar
+          retention-days: 1
   deploy:
     runs-on: ubuntu-latest
     needs: build
