@@ -168,11 +168,6 @@ window.sendMessage = function sendMessage(message) {
       window.locale.setLang(config.get('lang'))
 
       tabconfig.save()
-
-      // css editor
-
-      config.set('custom_css', window.editor.getValue())
-
       config.save()
       sendMessage('restyle')
     })
