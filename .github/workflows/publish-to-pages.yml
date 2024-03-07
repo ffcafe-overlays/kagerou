@@ -29,8 +29,17 @@ jobs:
         with:
           name: dist
           path: dist/
-
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/master'
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to Github Pages 🚀
-        if: github.ref == 'refs/heads/master'
         id: deployment
         uses: actions/deploy-pages@v4
