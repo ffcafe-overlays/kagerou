@@ -111,7 +111,7 @@
         "sortby": "排序方式",
         "available": "可用数据列",
         "configured": "显示数据列",
-        "widths": [ 0, 1, 2, 3 ]
+        "widths": [0, 1, 2, 3]
       },
       "i/e": {
         "_": "导入/导出",
@@ -221,11 +221,11 @@
         "critical": "伤害和治疗百分比"
       },
       "thousands_separator": {
-        "_": "Thousands separator",
-        "none": "None",
-        "period": "Period (.)",
-        "comma": "Comma (,)",
-        "space": "Space"
+        "_": "千位分隔符",
+        "none": "无",
+        "period": "点 (.)",
+        "comma": "逗号 (,)",
+        "space": "空格"
       },
       "myname": "自己的名字",
       "use_short_name": "玩家名字表示方法（国服无效）",
@@ -236,7 +236,7 @@
       "number_abbreviation": "省略以1000为单位的数字"
     },
     "element": {
-      "narrow_nav": "*Narrower Top navigation bar"
+      "narrow_nav": "紧凑的顶栏"
     }
   },
   "col": {
