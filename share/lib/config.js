@@ -258,7 +258,7 @@ window.COLUMN_USE_LARGER = {
   MAXHEAL: ['MAXHEAL', 'maxheal'],
 }
 
-const VALID_PLAYER_JOBS = [
+window.VALID_PLAYER_JOBS = [
   'GLA', 'GLD', 'MRD', 'PUG', 'PGL', 'LNC', 'ROG', 'ARC', 'THM', 'ACN', 'CNJ',
   'PLD', 'WAR', 'MNK', 'DRG', 'NIN', 'RPR', 'VPR', 'BRD', 'BLM', 'SMN', 'SCH', 'WHM',
   'DRK', 'MCH', 'AST', 'SGE', 'SAM', 'RDM', 'PCT', 'BLU', 'GNB', 'DNC',
